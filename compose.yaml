@@ -1,0 +1,32 @@
+﻿version: '3.8'
+
+services:
+  api:
+    build:
+      context: . # Контекст сборки: текущая папка (корневая папка проекта TestTaskModulBank)
+      dockerfile: ./Dockerfile # Dockerfile находится в той же папке, что и docker-compose.yml
+    ports:
+      - "80:8080" # Маппинг портов: хост:контейнер. Хост 80 -> Контейнер 8080
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development # Можно изменить на Production
+      - ConnectionStrings__DefaultConnection=Host=db;Port=5432;Database=ModulbankDatabase;Username=postgres;Password=postgres
+      # Убедитесь, что имя переменной соединения соответствует appsettings.json
+    depends_on:
+      - db # API зависит от базы данных
+    volumes:
+      - api_logs:/app/logs # Опционально: том для логов API (если логи пишутся в /app/logs)
+
+  db:
+    image: postgres:16-alpine # Используем легкий образ PostgreSQL
+    environment:
+      POSTGRES_DB: ModulbankDatabase
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - pgdata:/var/lib/postgresql/data # Постоянное хранение данных базы данных
+    ports:
+      - "5432:5432" # Опционально: маппинг порта базы данных на хост
+
+volumes:
+  pgdata: # Том для данных PostgreSQL
+  api_logs: # Том для логов API
