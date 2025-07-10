@@ -12,7 +12,7 @@
 
 2.  **Клонируйте репозиторий:**
     ```bash
-    git clone [https://github.com/BulatNabi/internship-entry-task.git](https://github.com/BulatNabi/internship-entry-task.git)
+    git clone https://github.com/BulatNabi/internship-entry-task.git
     cd internship-entry-task/TestTaskModulBank
     ```
     (Убедитесь, что вы находитесь в папке `TestTaskModulBank`, где лежат `Dockerfile` и `docker-compose.yml`.)
@@ -80,4 +80,4 @@ API использует стандарт `ProblemDetails` (RFC 7807) для п�
 
 ---
 
-**Автор:** Булат Наби - [https://github.com/BulatNabi](https://github.com/BulatNabi)
+**Автор:** Telegram: @talubarni
